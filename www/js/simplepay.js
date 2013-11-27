@@ -280,10 +280,10 @@ $('#sendMoneyBtn').on('click', function(e) {
     $.getJSON(url, data, function(res) {
         $.mobile.loading( "hide" );
         if(res.result == 'success') {
-            $('#withdrawRes').text('Money sent sunccessfully.');
+            $('#sendRes').text('Money sent sunccessfully.');
             $('#sendAmount').val('');
             $('#sendPin').val('');
-            $('#sendAmount').val('');
+            $('#sendRecipient').val('');
         } else {
             $('#withdrawRes').text(res.result);
         }
