@@ -1,0 +1,26 @@
+/*
+    * txn
+    */
+    .txn{
+        display: block;
+    }
+    
+    .txnAmount{
+        display:block;
+        font-size: small
+    }
+    
+    .txnType{
+        display: block;
+        font-size: x-small;
+    }
+    
+    .txnDate{
+        display: block;
+        font-size: x-small;
+    }
+    
+    .txnRef{
+        display: block;
+        font-size: x-small;
+    }
