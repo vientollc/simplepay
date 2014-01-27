@@ -69,7 +69,7 @@ $('#springboard').on('pageshow', function(e) {
             var txns = res.data;
             for(var key in txns) {
                 var txn = txns[key];
-                $('#lastTxnList').append('<li data-theme="h"> <div class="txn"> <span class="txnAmount">' + txn.amount + '</span><span class="txnType">Type: ' + txn.type + '</span><span class="txnDate">' + txn.tdate + '</span><span class="txnRef">Reference: ' + txn.reference_id + '</span></div></li>');
+                $('#lastTxnList').append('<li data-theme="h"> <div class="txn"> <span class="txnAmount">' + txn.amount + '</span><span class="txnType">Type: ' + txn.type + '</span><span class="txnDate">' + txn.tdate + '</span><span class="txnRef">Reference: ' + txn.reference_id + ' (' + txn.id + ')</span></div></li>');
             }
             
             $('#lastTxnList').listview('refresh');
@@ -356,4 +356,59 @@ $('#mRegBtn').on('click', function(e) {
     } else {
         $('#mRegRes').text('Password Mismatch');
     }
+});
+
+/*
+*   Buy Airtime
+*/
+$('#buyAirtime').on('pageshow', function(e) {
+    $.mobile.loading( "show", { text: 'Getting Networks', textVisible: true } );
+    
+    var data = {
+        username: u,
+        password: p,
+        task: 'MOB_RECHARGE_CAT'
+    };
+    
+    $.getJSON(url, data, function(res) {
+        $.mobile.loading( "hide" );
+        if(res.result == 'success') {
+            $('#networkMenu').empty();
+            for(var key=0; key<res.data.length; key++){
+                var network = res.data[key];
+                $('#networkMenu').append($("<option></option>").attr("value", network.mid).text(network.mname));
+            }
+            $('#networkMenu').selectmenu('refresh');
+        } else {
+            //$('#withdrawRes').text(res.result);
+        }
+    });
+});
+
+$('#airtimeSend').on('click', function(e){
+    $.mobile.loading( "show", { text: 'Sending Airtime', textVisible: true } );
+    
+    var network = $('#networkMenu').val();
+    var amount = $('#rechargeAmount').val();
+    var rec = $('#rechargeRecipient').val();
+    var ipin = $('#rechargeIpin').val();
+    
+    var data = {
+        username: u,
+        password: p,
+        task: 'MOB_RECHARGE',
+        mid: network,
+        mobno_tocredit: rec,
+        amount_tocredit: amount,
+        iPIN: ipin
+    };
+    
+    $.getJSON(url, data, function(res) {
+        $.mobile.loading( "hide" );
+        if(res.result == 'success') {
+            $('#airtimeResp').text('Airtime Sent');
+        } else {
+            $('#airtimeResp').text(res.result);
+        }
+    });
 });

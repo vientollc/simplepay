@@ -77,6 +77,11 @@
                       Withdraw to Bank
                   </a>
               </li>
+              <li data-theme="a">
+                  <a href="#buyAirtime" data-transition="slide">
+                      Buy Airtime
+                  </a>
+              </li>
               <li data-role="list-divider" role="heading">
               </li>
               <li data-theme="a">
@@ -570,6 +575,43 @@
           </div>
           <input id="mRegBtn" type="submit" data-theme="h" value="Register">
           <div id="mResReg" data-controltype="textblock">
+              <p>
+                  <b>
+                      ...
+                  </b>
+              </p>
+          </div>
+      </div>
+  </div>
+  <div data-role="page" data-control-title="Buy Airtime" id="buyAirtime">
+      <div data-theme="f" data-role="header">
+          <h3>
+              SimplePay™
+          </h3>
+      </div>
+      <div data-role="content">
+          <h2>
+              Buy Airtime
+          </h2>
+          <div data-role="fieldcontain" data-controltype="selectmenu">
+              <select id="networkMenu" name="">
+                  <option value="option1">
+                      Option 1
+                  </option>
+              </select>
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <input name="" id="rechargeAmount" placeholder="amount" value="" type="number">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <input name="" id="rechargeRecipient" placeholder="recipient" value=""
+              type="tel">
+          </div>
+          <div data-role="fieldcontain" data-controltype="textinput">
+              <input name="" id="rechargeIpin" placeholder="iPIN" value="" type="password">
+          </div>
+          <input id="airtimeSend" type="submit" data-theme="h" value="Send Airtime">
+          <div id="airtimeResp" data-controltype="textblock">
               <p>
                   <b>
                       ...
